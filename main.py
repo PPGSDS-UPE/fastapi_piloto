@@ -1,8 +1,63 @@
-from fastapi import FastAPI
-import random as rd
+from fastapi import FastAPI, Request, Response
+#import random as rd
 
 app = FastAPI()
 
+usuarios = [{
+    "id": 1,
+    "nome": "Pedro",
+    "idade": 25,
+    "cidade": "Serra Talhada",
+    "senha": "abc123"
+}]
+
+@app.get("/")
+def apresentar_app():
+    return {"Mensagem" : "Aplicação simples com CRUD FastAPI!"}
+
+#Pegar usuários
+@app.get("/usuarios")
+def pegar_usuarios():
+    return usuarios
+
+@app.post("/usuario")
+async def criar_usuario(request : Request, response: Response):
+    usuario = await request.json()
+    usuarios.append(usuario)
+    print(usuarios)
+    return {
+        "dados retornados" : usuarios
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
 @app.get("/")
 def home():
     return {"Olá" : "Mundo!"}
@@ -26,3 +81,4 @@ def pegar_venda(id_venda: int):
         return vendas[id_venda]
     else:
         return {"Erro": "ID Venda inexistente"}
+    """
