@@ -6,6 +6,6 @@ class Usuario(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     nome = Column(String, index=True)
-    idade = Column(Integer, index=True)
-    cidade = Column(String, index=True)
-    senha = Column(String, index=True)
+    idade = Column(Integer, nullable=False)
+    cidade = Column(String, nullable=False)
+    senha = Column(String, nullable=False)
